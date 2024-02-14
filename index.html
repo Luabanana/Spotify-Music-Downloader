@@ -115,7 +115,7 @@
                 <div class="progress"></div>
             </div>
         </form>
-        <div id="downloadLink" class="download-link"></div>
+        <a id="downloadLink" class="download-link" download></a>
     </div>
 
     <script>
@@ -127,8 +127,9 @@
                 var trackID = spotifyLink.split("/")[4];
                 progressBar.style.width = "100%";
                 setTimeout(function() {
-                    downloadLink.innerHTML = "<a href='https://spotify.com/download/" + trackID + "' download>Download hier</a>";
-                    downloadLink.style.display = "block";
+                    downloadLink.href = "https://spotify.com/download/" + trackID;
+                    downloadLink.setAttribute("download", "");
+                    downloadLink.click();
                 }, 800); // Simuleer een vertraging van 800 ms voor de demo
             } else {
                 alert("Voer een geldige Spotify-nummerlink in.");
