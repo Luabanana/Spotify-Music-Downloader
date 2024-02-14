@@ -97,10 +97,10 @@
             background-color: #1db954;
             transition: width 0.8s ease;
         }
-        .footer {
-            margin-top: 30px;
-            font-size: 14px;
-            color: #777;
+        .download-link {
+            display: none;
+            margin-top: 20px;
+            font-size: 16px;
         }
     </style>
 </head>
@@ -115,20 +115,20 @@
                 <div class="progress"></div>
             </div>
         </form>
-        <div class="footer">
-            &copy; 2024 Spotify Music Downloader. Alle rechten voorbehouden.
-        </div>
+        <div id="downloadLink" class="download-link"></div>
     </div>
 
     <script>
         function downloadSpotify() {
             var spotifyLink = document.getElementById("spotifyLink").value;
             var progressBar = document.querySelector(".progress");
+            var downloadLink = document.getElementById("downloadLink");
             if (spotifyLink.startsWith("https://open.spotify.com/track/")) {
                 var trackID = spotifyLink.split("/")[4];
                 progressBar.style.width = "100%";
                 setTimeout(function() {
-                    window.location.href = "https://spotify.com/download/" + trackID;
+                    downloadLink.innerHTML = "<a href='https://spotify.com/download/" + trackID + "' download>Download hier</a>";
+                    downloadLink.style.display = "block";
                 }, 800); // Simuleer een vertraging van 800 ms voor de demo
             } else {
                 alert("Voer een geldige Spotify-nummerlink in.");
